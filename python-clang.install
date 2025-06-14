@@ -1,0 +1,26 @@
+post_install() {
+  echo "Creating system user 'python-clang'..."
+  id -u python-clang &>/dev/null || useradd -r -s /usr/bin/nologin -d /opt/python-clang python-clang
+
+  echo "Setting up virtual environment..."
+  install -d -o python-clang -g python-clang /opt/python-clang
+  python -m venv /opt/python-clang/venv
+
+  echo "Installing Python packages..."
+  chown -R python-clang:python-clang /opt/python-clang
+  sudo -u python-clang /opt/python-clang/venv/bin/pip install -r /opt/python-clang/requirements.txt
+  echo ""
+  echo "#######################################################################"
+  echo ""
+  echo "Important! use 'sudoedit /opt/python-clang/.env' to add your bot token!"
+  echo ""
+  echo "#######################################################################"
+}
+
+post_remove() {
+    echo "Checking if 'python-clang' user should be deleted..."
+    if id "python-clang" &>/dev/null; then
+        echo "Removing user 'python-clang'..."
+        userdel -r python-clang 2>/dev/null || true
+    fi
+}

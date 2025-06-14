@@ -1,0 +1,14 @@
+[Unit]
+Description=Clang, the best bot in the world
+After=network.target
+
+[Service]
+User=python-clang
+Group=python-clang
+Type=simple
+ExecStart=/opt/python-clang/venv/bin/python /opt/python-clang/clang.py
+WorkingDirectory=/opt/python-clang
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
