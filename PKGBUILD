@@ -6,6 +6,7 @@ arch=('any')
 url="https://github.com/maidnaut/clang"
 license=('GPL-3.0-or-later')
 makedepends=('python' 'git')
+backup=('opt/python-clang/.env')
 depends=('python')
 install=python-clang.install
 source=("$pkgname::git+https://github.com/maidnaut/clang.git" "python-clang.service" "requirements.txt")
