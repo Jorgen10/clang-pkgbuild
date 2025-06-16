@@ -6,8 +6,9 @@ After=network.target
 User=python-clang
 Group=python-clang
 Type=simple
-ExecStart=/opt/python-clang/venv/bin/python /opt/python-clang/clang.py
-WorkingDirectory=/opt/python-clang
+Environment="DATA_DIR=/var/lib/python-clang"
+ExecStart=/usr/share/python-clang/.venv/bin/python /usr/share/python-clang/clang.py
+WorkingDirectory=/usr/share/python-clang
 Restart=always
 
 [Install]

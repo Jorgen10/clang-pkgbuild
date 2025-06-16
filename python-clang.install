@@ -1,26 +1,35 @@
 post_install() {
   echo "Creating system user 'python-clang'..."
-  id -u python-clang &>/dev/null || useradd -r -s /usr/bin/nologin -d /opt/python-clang python-clang
+  id -u python-clang &>/dev/null || useradd -r -s /usr/bin/nologin -d /var/lib/python-clang python-clang
 
   echo "Setting up virtual environment..."
-  install -d -o python-clang -g python-clang /opt/python-clang
-  python -m venv /opt/python-clang/venv
+  # install -d -o python-clang -g python-clang /usr/share/python-clang
+  python -m venv /usr/share/python-clang/.venv
 
   echo "Installing Python packages..."
-  chown -R python-clang:python-clang /opt/python-clang
-  sudo -u python-clang /opt/python-clang/venv/bin/pip install -r /opt/python-clang/requirements.txt
+  chown -R python-clang:python-clang /var/lib/python-clang
+  #sudo -u python-clang /usr/share/python-clang/.venv/bin/pip install -r /usr/share/python-clang/requirements.txt
+  /usr/share/python-clang/.venv/bin/pip install -r /usr/share/python-clang/requirements.txt
+
   echo ""
-  echo "#######################################################################"
+  echo "############################################################################################################"
   echo ""
-  echo "Important! use 'sudoedit /opt/python-clang/.env' to add your bot token!"
+  echo "By default this installs a global .env accessible in /var/lib/python-clang"
+  echo "If you do not wish to use this data location, set the environmentvariable DATA_DIR with a non-relative path."
+  echo 'By running "python-clang", DATA_DIR defaults to $XDG_DATA_HOME/python-clang.'
+  echo 'If it does not exist, DATA_DIR defaults to ~/.local/share/python-clang'
+  echo 'If the program instantly crashes (either systemd service or manual launch)'
+  echo 'Then do remember to add your bot token to the .env file located at the DATA_DIR'
   echo ""
-  echo "#######################################################################"
+  echo "############################################################################################################"
 }
 
 post_remove() {
-    echo "Checking if 'python-clang' user should be deleted..."
-    if id "python-clang" &>/dev/null; then
-        echo "Removing user 'python-clang'..."
-        userdel -r python-clang 2>/dev/null || true
-    fi
+  echo "Removing Clang data"
+  rm -rf '/var/lib/python-clang'
+  echo "Checking if 'python-clang' user should be deleted..."
+  if id "python-clang" &>/dev/null; then
+    echo "Removing user 'python-clang'..."
+    userdel -r python-clang 2>/dev/null || true
+  fi
 }
