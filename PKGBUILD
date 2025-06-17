@@ -1,5 +1,5 @@
 pkgname=python-clang-git
-pkgver=r494.28f223f
+pkgver=r502.80a6f35
 pkgrel=1
 pkgdesc="Clang, the best bot in the world"
 arch=('any')
@@ -30,6 +30,8 @@ pkgver() {
 
 package() {
   cd "$pkgname"
+
+  install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
 
   install -d "$pkgdir/usr/share/python-clang"
   mv ./* "$pkgdir/usr/share/python-clang"
