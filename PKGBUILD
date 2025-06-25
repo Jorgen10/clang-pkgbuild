@@ -1,5 +1,5 @@
 pkgname=python-clang-git
-pkgver=r508.358a013
+pkgver=r527.497b9bd
 pkgrel=1
 pkgdesc="Clang, the best bot in the world"
 arch=('any')
@@ -20,7 +20,7 @@ sha256sums=(
   'SKIP'
   '0f26c509e3c32d8915e6c4bbf4548efbae0f9472daba939c18e044643da4c8c9'
   '64a6afdf40f402c1309cb7b96eb0e9356883217773ef2f057fa9892d8fb37fa1'
-  '400f0f346dbf2f354b4fb0bb39031772660130c724bf3a6e1f6d164e639ba609'
+  '49ae5800eaab574f0bf0fa2f85458c27e3193392c3f1140e2c46a5f775157275'
 )
 
 pkgver() {

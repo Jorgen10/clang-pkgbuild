@@ -13,5 +13,10 @@ if [ ! -d "$DATA_DIR" ]; then
   mkdir -p "$DATA_DIR"
 fi
 
+if [ -n "$DATA_DIR" ]; then
+  DATA_DIR=$(cd "$DATA_DIR" && pwd)
+fi
+
 cd /usr/share/python-clang || exit
+
 DATA_DIR=$DATA_DIR /usr/share/python-clang/.venv/bin/python /usr/share/python-clang/clang.py
