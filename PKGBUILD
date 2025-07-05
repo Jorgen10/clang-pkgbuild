@@ -1,5 +1,5 @@
-pkgname=python-clang-git
-pkgver=r527.497b9bd
+pkgname=python-clang
+pkgver=r543.ddfef89
 pkgrel=1
 pkgdesc="Clang, the best bot in the world"
 arch=('any')
@@ -7,6 +7,8 @@ _repo='maidnaut'
 url="https://github.com/$_repo/clang"
 license=('GPL-3.0-or-later')
 makedepends=('python' 'git')
+provides=('python-clang')
+replaces=('python-clang-git')
 backup=('var/lib/python-clang')
 depends=('python')
 install=python-clang.install
