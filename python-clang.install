@@ -32,4 +32,5 @@ post_remove() {
     echo "Removing user 'python-clang'..."
     userdel -r python-clang 2>/dev/null || true
   fi
+  rm /etc/systemd/system/multi-user.target.wants/python-clang.service
 }
