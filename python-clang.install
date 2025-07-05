@@ -33,4 +33,5 @@ post_remove() {
     userdel -r python-clang 2>/dev/null || true
   fi
   rm /etc/systemd/system/multi-user.target.wants/python-clang.service
+  rm -rf /usr/share/python-clang
 }
